@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/DGM1600Final.unity
-  isLoaded: 1
-  isActive: 1
