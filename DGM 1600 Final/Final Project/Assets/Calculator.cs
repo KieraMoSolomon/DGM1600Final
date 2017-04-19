@@ -4,6 +4,8 @@ using System.Collections;
 public class Calculator : MonoBehaviour {
 	public double firstNumber;
 	public double secondNumber;
+	public string operation;
+
 		// Use this for initialization
 		void Start () {
 
