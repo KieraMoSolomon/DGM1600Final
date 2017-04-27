@@ -15,8 +15,9 @@ public class Calculator : MonoBehaviour {
 	const int LEV_ONE_RAN_NUMS = 10;
 	const int LEV_TWO_RAN_NUMS = 20;
 	const int LEV_THR_RAN_NUMS = 30;
+	const string Add = "+";
 
-
+	enum OperatorType {};
 		// Use this for initialization
 		void Start () {
 		//setting the values for the arrays for each level
@@ -41,6 +42,20 @@ public class Calculator : MonoBehaviour {
 		firstNumber = GUI.TextField (Rect (-264, -226, 0), firstNumber);
 		secondNumber = GUI.TextField (Rect (252, -226, 0), secondNumber);
 
-		//
+		//start a for loop for level one
+		for (int i = 0; i < LEV_ONE_RAN_NUMS; i++){
+			//if +
+
+			//if -
+			//if /
+			//if *
+
+			//if result is equal to random number
+			//
+		}
+		//start a for loop for level two
+
+		//start a for loop for level three
+
 	}
 }
