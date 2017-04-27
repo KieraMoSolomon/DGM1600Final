@@ -36,4 +36,11 @@ public class Calculator : MonoBehaviour {
 		void Update () {
 
 		}
+	void OnGUI (){
+		//get the input from the text boxes
+		firstNumber = GUI.TextField (Rect (-264, -226, 0), firstNumber);
+		secondNumber = GUI.TextField (Rect (252, -226, 0), secondNumber);
+
+		//
+	}
 }
