@@ -58,7 +58,7 @@ public class Calculator : MonoBehaviour {
 		for (int i = 0; i < LEV_ONE_RAN_NUMS; i++){
 			//if +
 			if (addButton.interactable == true){
-				if ((GUI.Button (new Rect (-89, -256, 41, 30), "+") || Input.GetKeyDown (KeyCode.KeypadPlus))) {
+				if (addButton || Input.GetKeyDown (KeyCode.KeypadPlus)) {
 					double num1 = double.Parse (firstNumber);
 					double num2 = double.Parse (secondNumber);
 
@@ -70,7 +70,7 @@ public class Calculator : MonoBehaviour {
 
 			//if -
 			if (subButton.interactable == true) {
-				if ((GUI.Button (new Rect (-39, -256, 41, 30), "-") || Input.GetKeyDown (KeyCode.KeypadMinus))) {
+				if (subButton || Input.GetKeyDown (KeyCode.KeypadMinus)) {
 					double num1 = double.Parse (firstNumber);
 					double num2 = double.Parse (secondNumber);
 
@@ -81,7 +81,7 @@ public class Calculator : MonoBehaviour {
 			}
 			//if /
 			if (divideButton.interactable == true){
-				if ((GUI.Button(new Rect(64, -256, 41, 30), "/") || Input.GetKeyDown (KeyCode.KeypadDivide))) {
+				if (divideButton || Input.GetKeyDown (KeyCode.KeypadDivide)) {
 					double num1 = double.Parse (firstNumber);
 					double num2 = double.Parse (secondNumber);
 
