@@ -16,6 +16,9 @@ public class Calculator : MonoBehaviour {
 	const int LEV_ONE_RAN_NUMS = 10;
 	const int LEV_TWO_RAN_NUMS = 20;
 	const int LEV_THR_RAN_NUMS = 30;
+	OperatorType oper = OperatorType.Add;
+
+
 
 	enum OperatorType {
 		Add,
@@ -27,7 +30,6 @@ public class Calculator : MonoBehaviour {
 	public Button subButton;
 	public Button multButton;
 	public Button divideButton;
-
 
 		// Use this for initialization
 		void Start () {
@@ -45,8 +47,7 @@ public class Calculator : MonoBehaviour {
 		}
 
 		// Update is called once per frame
-		void Update () {
-
+	void Update () {
 		}
 	void OnGUI (){
 		//get the input from the text boxes
@@ -64,19 +65,19 @@ public class Calculator : MonoBehaviour {
 					result = num1 + num2;
 
 				}
-				OperatorType.Add;
+				oper = OperatorType.Add;
 			}
 
 			//if -
-			if (subButton.interactable == true){
-				if ((GUI.Button(new Rect(-39, -256, 41, 30), "-") || Input.GetKeyDown (KeyCode.KeypadMinus))) {
+			if (subButton.interactable == true) {
+				if ((GUI.Button (new Rect (-39, -256, 41, 30), "-") || Input.GetKeyDown (KeyCode.KeypadMinus))) {
 					double num1 = double.Parse (firstNumber);
 					double num2 = double.Parse (secondNumber);
 
 					result = num1 - num2;
 
 				}
-				OperatorType.Subtract;
+				oper = OperatorType.Subtract;
 			}
 			//if /
 			if (divideButton.interactable == true){
@@ -86,21 +87,20 @@ public class Calculator : MonoBehaviour {
 
 					result = num1 / num2;
 				}
-				OperatorType.Divide;
+				oper = OperatorType.Divide;
 			}
 			//if *
 			if (multButton.interactable == true){
-				if ((GUI.Button(new Rect(11, -256, 41, 30), "*") ||Input.GetKeyDown (KeyCode.KeypadMultiply))) {
+				if (multButton ||Input.GetKeyDown (KeyCode.KeypadMultiply)) {
 					double num1 = double.Parse (firstNumber);
 					double num2 = double.Parse (secondNumber);
 
 					result = num1 * num2;
 				}
-				OperatorType.Multiply;
+				oper = OperatorType.Multiply;
 			}
 
 			if (result == levelOne[i]){
-			OperatorType oper = OperatorType.Add;
 			//if result is equal to random number
 				switch(oper){
 				case OperatorType.Add:
