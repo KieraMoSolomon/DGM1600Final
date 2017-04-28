@@ -44,16 +44,50 @@ public class Calculator : MonoBehaviour {
 		}
 	void OnGUI (){
 		//get the input from the text boxes
-		//firstNumber = GUI.TextField (Rect (-264, -226, 0), firstNumber);
-		//secondNumber = GUI.TextField (Rect (252, -226, 0), secondNumber);
+		firstNumber = GUI.TextField (new Rect (-264, -226, 0), firstNumber);
+		secondNumber = GUI.TextField (new Rect (252, -226, 0), secondNumber);
+		//firstNumber = GUILayout.Button
 
 		//start a for loop for level one
 		for (int i = 0; i < LEV_ONE_RAN_NUMS; i++){
 			//if +
+			if (addButton == true){
+				if((GUI.Button(new Rect(800, 75, 60, 25), "") || Input.GetKeyDown(KeyCode.KeypadPlus))){
+					double num1 = double.Parse (firstNumber);
+					double num2 = double.Parse (secondNumber);
+
+					result = num1 + num2;
+				}
+			}
 
 			//if -
+			if (subButton == true){
+				if (Input.GetKeyDown (KeyCode.KeypadMinus)) {
+					double num1 = double.Parse (firstNumber);
+					double num2 = double.Parse (secondNumber);
+
+					result = num1 - num2;
+				}
+			}
 			//if /
+			if (divideButton == true){
+				if (Input.GetKeyDown (KeyCode.KeypadDivide)) {
+					double num1 = double.Parse (firstNumber);
+					double num2 = double.Parse (secondNumber);
+
+					result = num1 / num2;
+				}
+			}
 			//if *
+			if (multButton == true){
+				if (Input.GetKeyDown (KeyCode.KeypadMultiply)) {
+					double num1 = double.Parse (firstNumber);
+					double num2 = double.Parse (secondNumber);
+
+					result = num1 * num2;
+				}
+			}
+
 			if (result == levelOne[i]){
 			OperatorType oper = OperatorType.Add;
 			//if result is equal to random number
