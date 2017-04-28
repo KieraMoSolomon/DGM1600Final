@@ -17,7 +17,12 @@ public class Calculator : MonoBehaviour {
 	const int LEV_THR_RAN_NUMS = 30;
 	const string Add = "+";
 
-	enum OperatorType {};
+	enum OperatorType {
+		Add,
+		Subtract,
+		Multiply,
+		Divide,
+	};
 		// Use this for initialization
 		void Start () {
 		//setting the values for the arrays for each level
@@ -39,8 +44,8 @@ public class Calculator : MonoBehaviour {
 		}
 	void OnGUI (){
 		//get the input from the text boxes
-		firstNumber = GUI.TextField (Rect (-264, -226, 0), firstNumber);
-		secondNumber = GUI.TextField (Rect (252, -226, 0), secondNumber);
+		//firstNumber = GUI.TextField (Rect (-264, -226, 0), firstNumber);
+		//secondNumber = GUI.TextField (Rect (252, -226, 0), secondNumber);
 
 		//start a for loop for level one
 		for (int i = 0; i < LEV_ONE_RAN_NUMS; i++){
@@ -49,9 +54,37 @@ public class Calculator : MonoBehaviour {
 			//if -
 			//if /
 			//if *
-
+			if (result == levelOne[i]){
+			OperatorType oper = OperatorType.Add;
 			//if result is equal to random number
+				switch(oper){
+				case OperatorType.Add:
+					addButton = false;
+					result = 0;
+					break;
+				case OperatorType.Subtract:
+					subButton = false;
+					result = 0;
+					break;
+				case OperatorType.Divide:
+					divideButton = false;
+					result = 0;
+					break;
+				case OperatorType.Multiply:
+					multButton = false;
+					result = 0;
+					break;
+				}
 			//
+			}
+			//reset the operators
+			if (addButton == false && subButton == false && divideButton == false && multButton == false){
+				addButton = true;
+				subButton = true;
+				divideButton = true;
+				multButton = true;
+
+			}
 		}
 		//start a for loop for level two
 
