@@ -36,6 +36,11 @@ public class Calculator : MonoBehaviour {
 	public Transform Spheres;
 	public GameObject Sphere;
 
+	//This is for background color
+	public Color col1 = Color.blue;
+	public Color col2 = Color.green;
+	public float duration = 3.0F;
+	public CameraClearFlags clearFlags;
 	Camera camera;
 
 		// Use this for initialization
