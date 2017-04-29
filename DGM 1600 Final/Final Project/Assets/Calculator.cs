@@ -48,7 +48,7 @@ public class Calculator : MonoBehaviour {
 		// Use this for initialization
 		void Start () {
 		//background
-		camera = GameObject.Find("Camera").GetComponent<Camera>();
+		camera = GetComponent<Camera>();
 		camera.clearFlags = CameraClearFlags.SolidColor;
 
 		sidePosition = RandomGenerator (randomSide1, randomSide2);
@@ -60,6 +60,8 @@ public class Calculator : MonoBehaviour {
 		subButton = GameObject.Find ("-").GetComponent<Button> ();
 		multButton = GameObject.Find ("*").GetComponent<Button> ();
 		divideButton = GameObject.Find ("/").GetComponent<Button> ();
+		
+		Sphere = GameObject.Find("Sphere").GetComponent<GameObject>();
 
 		//setting the values for the arrays for each level
 		for (int i = 0; i < LEV_ONE_RAN_NUMS; i++) {
@@ -75,18 +77,14 @@ public class Calculator : MonoBehaviour {
 		}
 
 		// Update is called once per frame
-	void Update () {
+	//void Update () {
 
-		float t = Mathf.PingPong(Time.time, duration) / duration;
-		camera.backgroundColor = Color.Lerp(col1, col2, t);
+		//float t = Mathf.PingPong(Time.time, duration) / duration;
+		//camera.backgroundColor = Color.Lerp(col1, col2, t);
 
 
-		//random number movement
-		Sphere = GameObject.Find("Sphere").GetComponent<GameObject>();
-		Vector3 screenPos = new Vector3 (sidePosition, fallingPosition, 0);
-		fallingPosition = screenPos.y;
 
-		}
+		//}
 	int RandomGenerator(int random1, int random2){
 		int randomSideNum = Random.Range (random1, random2);
 		return randomSideNum;
@@ -94,11 +92,16 @@ public class Calculator : MonoBehaviour {
 
 	void OnGUI (){
 		//get the input from the text boxes
-		firstNumber = num1;
-		secondNumber = num2;
+		firstNumber = num1.text;
+		secondNumber = num2.text;
 
 		//start a for loop for level one
 		for (int i = 0; i < LEV_ONE_RAN_NUMS; i++){
+			
+			//random number movement
+			Vector3 screenPos = new Vector3 (sidePosition, fallingPosition, 0);
+			fallingPosition = screenPos.y;
+
 			//if +
 			if (addButton.interactable == true){
 				if (addButton || Input.GetKeyDown (KeyCode.KeypadPlus)) {
