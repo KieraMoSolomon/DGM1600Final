@@ -92,9 +92,12 @@ public class Calculator : MonoBehaviour {
 
 	void OnGUI (){
 		//get the input from the text boxes
-		firstNumber = number1.text;
-		secondNumber = number2.text;
-
+		if (number1 != null) {
+			firstNumber = number1.text;
+			secondNumber = number2.text;
+		} else {
+			return;
+		}
 		//start a for loop for level one
 		for (int i = 0; i < LEV_ONE_RAN_NUMS; i++){
 			
@@ -105,8 +108,8 @@ public class Calculator : MonoBehaviour {
 			//if +
 			if (addButton.interactable == true){
 				if (addButton || Input.GetKeyDown (KeyCode.KeypadPlus)) {
-					double num1 = double.Parse (firstNumber);
-					double num2 = double.Parse (secondNumber);
+					double num1 = double.Parse (string.Format (firstNumber));
+					double num2 = double.Parse (string.Format(secondNumber));
 
 					result = num1 + num2;
 
@@ -117,8 +120,8 @@ public class Calculator : MonoBehaviour {
 			//if -
 			if (subButton.interactable == true) {
 				if (subButton || Input.GetKeyDown (KeyCode.KeypadMinus)) {
-					double num1 = double.Parse (firstNumber);
-					double num2 = double.Parse (secondNumber);
+					double num1 = double.Parse (string.Format (firstNumber));
+					double num2 = double.Parse (string.Format(secondNumber));
 
 					result = num1 - num2;
 
@@ -128,8 +131,8 @@ public class Calculator : MonoBehaviour {
 			//if /
 			if (divideButton.interactable == true){
 				if (divideButton || Input.GetKeyDown (KeyCode.KeypadDivide)) {
-					double num1 = double.Parse (firstNumber);
-					double num2 = double.Parse (secondNumber);
+					double num1 = double.Parse (string.Format, (firstNumber));
+					double num2 = double.Parse (string.Format, (secondNumber));
 
 					result = num1 / num2;
 				}
@@ -138,8 +141,8 @@ public class Calculator : MonoBehaviour {
 			//if *
 			if (multButton.interactable == true){
 				if (multButton ||Input.GetKeyDown (KeyCode.KeypadMultiply)) {
-					double num1 = double.Parse (firstNumber);
-					double num2 = double.Parse (secondNumber);
+					double num1 = double.Parse (string.Format(firstNumber));
+					double num2 = double.Parse (string.Format(secondNumber));
 
 					result = num1 * num2;
 				}
