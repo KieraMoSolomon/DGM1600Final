@@ -27,13 +27,13 @@ public class Calculator : MonoBehaviour {
 		Multiply,
 		Divide,
 	};
-	public Button addButton;
-	public Button subButton;
-	public Button multButton;
-	public Button divideButton;
+	public Button addButton = GameObject.Find ("+").GetComponent<Button> ();
+	public Button subButton = GameObject.Find ("-").GetComponent<Button> ();
+	public Button multButton = GameObject.Find ("*").GetComponent<Button> ();
+	public Button divideButton = GameObject.Find ("/").GetComponent<Button> ();
 
-	public InputField number1;
-	public InputField number2;
+	public InputField number1 = GameObject.Find ("Num1").GetComponent<InputField> ();
+	public InputField number2 = GameObject.Find ("Num2").GetComponent<InputField> ();
 
 	//Moving
 	public GameObject Sphere;
@@ -43,25 +43,19 @@ public class Calculator : MonoBehaviour {
 	public Color col2 = Color.green;
 	public float duration = 3.0F;
 	public CameraClearFlags clearFlags;
-	public Camera camera;
+	public Camera camera = GameObject.Find("Camera").GetComponent<Camera>();
 
 		// Use this for initialization
 		void Start () {
 		//background
-		camera = GetComponent<Camera>();
 		camera.clearFlags = CameraClearFlags.SolidColor;
 
 		sidePosition = RandomGenerator (randomSide1, randomSide2);
 
 		number1 = GameObject.Find ("Num1").GetComponent<InputField> ();
-		number2 = GameObject.Find ("Num2").GetComponent<InputField> ();
-		
-		addButton = GameObject.Find ("+").GetComponent<Button> ();
-		subButton = GameObject.Find ("-").GetComponent<Button> ();
-		multButton = GameObject.Find ("*").GetComponent<Button> ();
-		divideButton = GameObject.Find ("/").GetComponent<Button> ();
-		
+
 		Sphere = GameObject.Find("Sphere").GetComponent<GameObject>();
+
 
 		//setting the values for the arrays for each level
 		for (int i = 0; i < LEV_ONE_RAN_NUMS; i++) {
@@ -92,7 +86,7 @@ public class Calculator : MonoBehaviour {
 
 	void OnGUI (){
 		//get the input from the text boxes
-		if (number1 != null) {
+		if (number1 != null && number2 != null) {
 			firstNumber = number1.text;
 			secondNumber = number2.text;
 		} else {
@@ -106,47 +100,68 @@ public class Calculator : MonoBehaviour {
 			fallingPosition = screenPos.y;
 
 			//if +
-			if (addButton.interactable == true){
-				if (addButton || Input.GetKeyDown (KeyCode.KeypadPlus)) {
-					double num1 = double.Parse (string.Format (firstNumber));
-					double num2 = double.Parse (string.Format(secondNumber));
+			if (addButton != null){
+				if (addButton.interactable == true) {
+						if (addButton || Input.GetKeyDown (KeyCode.KeypadPlus)) {
+							double num1 = 0;
+							double num2 = 0;
 
-					result = num1 + num2;
+							System.Double.TryParse (firstNumber, out num1);
+							System.Double.TryParse (secondNumber, out num2);
 
+							result = num1 + num2;
+
+						}
+				
+						oper = OperatorType.Add;
+					}
 				}
-				oper = OperatorType.Add;
-			}
 
 			//if -
-			if (subButton.interactable == true) {
-				if (subButton || Input.GetKeyDown (KeyCode.KeypadMinus)) {
-					double num1 = double.Parse (string.Format (firstNumber));
-					double num2 = double.Parse (string.Format(secondNumber));
+			if (subButton != null) {
+				if (subButton.interactable == true) {
+					if (subButton || Input.GetKeyDown (KeyCode.KeypadMinus)) {
+						double num1 = 0;
+						double num2 = 0;
 
-					result = num1 - num2;
+						System.Double.TryParse (firstNumber, out num1);
+						System.Double.TryParse (secondNumber, out num2);
 
+						result = num1 - num2;
+
+					}
+					oper = OperatorType.Subtract;
 				}
-				oper = OperatorType.Subtract;
 			}
 			//if /
-			if (divideButton.interactable == true){
-				if (divideButton || Input.GetKeyDown (KeyCode.KeypadDivide)) {
-					double num1 = double.Parse (string.Format, (firstNumber));
-					double num2 = double.Parse (string.Format, (secondNumber));
+			if (divideButton != null) {
+				if (divideButton.interactable == true) {
+					if (divideButton || Input.GetKeyDown (KeyCode.KeypadDivide)) {
+						double num1 = 0;
+						double num2 = 0;
 
-					result = num1 / num2;
+						System.Double.TryParse (firstNumber, out num1);
+						System.Double.TryParse (secondNumber, out num2);
+
+						result = num1 / num2;
+					}
+					oper = OperatorType.Divide;
 				}
-				oper = OperatorType.Divide;
 			}
 			//if *
-			if (multButton.interactable == true){
-				if (multButton ||Input.GetKeyDown (KeyCode.KeypadMultiply)) {
-					double num1 = double.Parse (string.Format(firstNumber));
-					double num2 = double.Parse (string.Format(secondNumber));
+			if (multButton != null){
+			if (multButton.interactable == true) {
+					if (multButton || Input.GetKeyDown (KeyCode.KeypadMultiply)) {
+						double num1 = 0;
+						double num2 = 0;
 
-					result = num1 * num2;
+						System.Double.TryParse (firstNumber, out num1);
+						System.Double.TryParse (secondNumber, out num2);
+
+						result = num1 * num2;
+					}
+					oper = OperatorType.Multiply;
 				}
-				oper = OperatorType.Multiply;
 			}
 
 			if (result == levelOne[i]){
@@ -155,22 +170,18 @@ public class Calculator : MonoBehaviour {
 				case OperatorType.Add:
 					addButton.interactable = false;
 					result = 0;
-					Sphere.transform.Translate (0, 2f, 0);
 					break;
 				case OperatorType.Subtract:
 					subButton.interactable = false;
 					result = 0;
-					Sphere.transform.Translate (0, 2f, 0);
 					break;
 				case OperatorType.Divide:
 					divideButton.interactable = false;
 					result = 0;
-					Sphere.transform.Translate (0, 2f, 0);
 					break;
 				case OperatorType.Multiply:
 					multButton.interactable = false;
 					result = 0;
-					Sphere.transform.Translate (0, 2f, 0);
 					break;
 				}
 			//
@@ -180,12 +191,14 @@ public class Calculator : MonoBehaviour {
 				secondNumber = "";
 			}
 			//reset the operators
-			if (addButton.interactable == false && subButton.interactable == false && divideButton.interactable == false && multButton.interactable == false){
-				addButton.interactable = true;
-				subButton.interactable = true;
-				divideButton.interactable = true;
-				multButton.interactable = true;
+			if (addButton != null && subButton != null && divideButton != null && multButton != null) {
+				if (addButton.interactable == false && subButton.interactable == false && divideButton.interactable == false && multButton.interactable == false) {
+					addButton.interactable = true;
+					subButton.interactable = true;
+					divideButton.interactable = true;
+					multButton.interactable = true;
 
+				}
 			}
 		}
 		//start a for loop for level two
