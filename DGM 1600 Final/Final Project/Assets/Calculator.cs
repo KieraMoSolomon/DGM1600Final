@@ -32,8 +32,8 @@ public class Calculator : MonoBehaviour {
 	public Button multButton;
 	public Button divideButton;
 
-	public InputField num1;
-	public InputField num2;
+	public InputField number1;
+	public InputField number2;
 
 	//Moving
 	public GameObject Sphere;
@@ -53,8 +53,8 @@ public class Calculator : MonoBehaviour {
 
 		sidePosition = RandomGenerator (randomSide1, randomSide2);
 
-		num1 = GameObject.Find ("Num1").GetComponent<InputField> ();
-		num2 = GameObject.Find ("Num2").GetComponent<InputField> ();
+		number1 = GameObject.Find ("Num1").GetComponent<InputField> ();
+		number2 = GameObject.Find ("Num2").GetComponent<InputField> ();
 		
 		addButton = GameObject.Find ("+").GetComponent<Button> ();
 		subButton = GameObject.Find ("-").GetComponent<Button> ();
@@ -92,8 +92,8 @@ public class Calculator : MonoBehaviour {
 
 	void OnGUI (){
 		//get the input from the text boxes
-		firstNumber = num1.text;
-		secondNumber = num2.text;
+		firstNumber = number1.text;
+		secondNumber = number2.text;
 
 		//start a for loop for level one
 		for (int i = 0; i < LEV_ONE_RAN_NUMS; i++){
