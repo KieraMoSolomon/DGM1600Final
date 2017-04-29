@@ -36,7 +36,7 @@ public class Calculator : MonoBehaviour {
 	public InputField number2 = GameObject.Find ("Num2").GetComponent<InputField> ();
 
 	//Moving
-	public GameObject Sphere;
+	public GameObject Sphere = GameObject.Find("Sphere").GetComponent<GameObject>();
 
 	//background color
 	public Color col1 = Color.blue;
@@ -51,11 +51,6 @@ public class Calculator : MonoBehaviour {
 		camera.clearFlags = CameraClearFlags.SolidColor;
 
 		sidePosition = RandomGenerator (randomSide1, randomSide2);
-
-		number1 = GameObject.Find ("Num1").GetComponent<InputField> ();
-
-		Sphere = GameObject.Find("Sphere").GetComponent<GameObject>();
-
 
 		//setting the values for the arrays for each level
 		for (int i = 0; i < LEV_ONE_RAN_NUMS; i++) {
