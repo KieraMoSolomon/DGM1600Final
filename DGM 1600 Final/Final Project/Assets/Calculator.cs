@@ -16,8 +16,8 @@ public class Calculator : MonoBehaviour {
 	OperatorType oper = OperatorType.Add;
 
 	//to move number
-	float fallingPosition;
-	int sidePosition;
+	float fallingPosition = 0;
+	int sidePosition = 0;
 	const int randomSide1 = 50;
 	const int randomSide2 = 900;
 
@@ -32,8 +32,10 @@ public class Calculator : MonoBehaviour {
 	public Button multButton;
 	public Button divideButton;
 
+	public InputField num1;
+	public InputField num2;
+
 	//Moving
-	public Transform Spheres;
 	public GameObject Sphere;
 
 	//background color
@@ -41,15 +43,23 @@ public class Calculator : MonoBehaviour {
 	public Color col2 = Color.green;
 	public float duration = 3.0F;
 	public CameraClearFlags clearFlags;
-	Camera camera;
+	public Camera camera;
 
 		// Use this for initialization
 		void Start () {
 		//background
-		camera = GetComponent<Camera>();
+		camera = GameObject.Find("Camera").GetComponent<Camera>();
 		camera.clearFlags = CameraClearFlags.SolidColor;
 
 		sidePosition = RandomGenerator (randomSide1, randomSide2);
+
+		num1 = GameObject.Find ("Num1").GetComponent<InputField> ();
+		num2 = GameObject.Find ("Num2").GetComponent<InputField> ();
+		
+		addButton = GameObject.Find ("+").GetComponent<Button> ();
+		subButton = GameObject.Find ("-").GetComponent<Button> ();
+		multButton = GameObject.Find ("*").GetComponent<Button> ();
+		divideButton = GameObject.Find ("/").GetComponent<Button> ();
 
 		//setting the values for the arrays for each level
 		for (int i = 0; i < LEV_ONE_RAN_NUMS; i++) {
@@ -70,9 +80,10 @@ public class Calculator : MonoBehaviour {
 		float t = Mathf.PingPong(Time.time, duration) / duration;
 		camera.backgroundColor = Color.Lerp(col1, col2, t);
 
+
 		//random number movement
-		Sphere = GameObject.Find("Sphere");
-		Vector3 screenPos = camera.WorldToScreenPoint (Spheres.position);
+		Sphere = GameObject.Find("Sphere").GetComponent<GameObject>();
+		Vector3 screenPos = new Vector3 (sidePosition, fallingPosition, 0);
 		fallingPosition = screenPos.y;
 
 		}
@@ -83,8 +94,8 @@ public class Calculator : MonoBehaviour {
 
 	void OnGUI (){
 		//get the input from the text boxes
-		firstNumber = GUI.TextField (new Rect (-264, -256, 122, 30), firstNumber);
-		secondNumber = GUI.TextField (new Rect (252, -256, 122, 30), secondNumber);
+		firstNumber = num1;
+		secondNumber = num2;
 
 		//start a for loop for level one
 		for (int i = 0; i < LEV_ONE_RAN_NUMS; i++){
