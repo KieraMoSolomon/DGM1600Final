@@ -36,7 +36,7 @@ public class Calculator : MonoBehaviour {
 	public Transform Spheres;
 	public GameObject Sphere;
 
-	//This is for background color
+	//background color
 	public Color col1 = Color.blue;
 	public Color col2 = Color.green;
 	public float duration = 3.0F;
@@ -66,6 +66,10 @@ public class Calculator : MonoBehaviour {
 
 		// Update is called once per frame
 	void Update () {
+
+		float t = Mathf.PingPong(Time.time, duration) / duration;
+		camera.backgroundColor = Color.Lerp(col1, col2, t);
+
 		//random number movement
 		Sphere = GameObject.Find("Sphere");
 		Vector3 screenPos = camera.WorldToScreenPoint (Spheres.position);
