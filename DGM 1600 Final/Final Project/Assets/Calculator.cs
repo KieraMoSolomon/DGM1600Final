@@ -129,18 +129,22 @@ public class Calculator : MonoBehaviour {
 				case OperatorType.Add:
 					addButton.interactable = false;
 					result = 0;
+					Sphere.transform.Translate (0, 2f, 0);
 					break;
 				case OperatorType.Subtract:
 					subButton.interactable = false;
 					result = 0;
+					Sphere.transform.Translate (0, 2f, 0);
 					break;
 				case OperatorType.Divide:
 					divideButton.interactable = false;
 					result = 0;
+					Sphere.transform.Translate (0, 2f, 0);
 					break;
 				case OperatorType.Multiply:
 					multButton.interactable = false;
 					result = 0;
+					Sphere.transform.Translate (0, 2f, 0);
 					break;
 				}
 			//
