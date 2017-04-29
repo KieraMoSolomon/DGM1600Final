@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class Calculator : MonoBehaviour {
 	string firstNumber;
@@ -9,16 +10,16 @@ public class Calculator : MonoBehaviour {
 	int[] levelTwo = new int[20];
 	int[] levelThree = new int[30];
 	double result;
-	//bool divideButton = true;
-	//bool multButton = true;
-	//bool addButton = true;
-	//bool subButton = true;
 	const int LEV_ONE_RAN_NUMS = 10;
 	const int LEV_TWO_RAN_NUMS = 20;
 	const int LEV_THR_RAN_NUMS = 30;
 	OperatorType oper = OperatorType.Add;
 
-
+	//to move number
+	float fallingPosition;
+	int sidePosition;
+	const int randomSide1 = 50;
+	const int randomSide2 = 900;
 
 	enum OperatorType {
 		Add,
@@ -31,8 +32,20 @@ public class Calculator : MonoBehaviour {
 	public Button multButton;
 	public Button divideButton;
 
+	//Moving
+	public Transform Spheres;
+	public GameObject Sphere;
+
+	Camera camera;
+
 		// Use this for initialization
 		void Start () {
+		//background
+		camera = GetComponent<Camera>();
+		camera.clearFlags = CameraClearFlags.SolidColor;
+
+		sidePosition = RandomGenerator (randomSide1, randomSide2);
+
 		//setting the values for the arrays for each level
 		for (int i = 0; i < LEV_ONE_RAN_NUMS; i++) {
 			levelOne [i] = Random.Range (1, 20);
@@ -48,7 +61,17 @@ public class Calculator : MonoBehaviour {
 
 		// Update is called once per frame
 	void Update () {
+		//random number movement
+		Sphere = GameObject.Find("Sphere");
+		Vector3 screenPos = camera.WorldToScreenPoint (Spheres.position);
+		fallingPosition = screenPos.y;
+
 		}
+	int RandomGenerator(int random1, int random2){
+		int randomSideNum = Random.Range (random1, random2);
+		return randomSideNum;
+	}
+
 	void OnGUI (){
 		//get the input from the text boxes
 		firstNumber = GUI.TextField (new Rect (-264, -256, 122, 30), firstNumber);
